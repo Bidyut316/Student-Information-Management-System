@@ -1,0 +1,61 @@
+.home-header{
+  min-height: 50vh;
+  background:
+    url("../img/nbu_admin_3.jpg") center/cover fixed no-repeat;
+}
+.footer-header{
+  min-height: 60vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+    url("../img/nbu1.jpg") center/cover fixed no-repeat;
+}
+.login{
+top: 2rem;
+right: 4rem;
+padding: 5px;
+}
+.signup{
+top: 2rem;
+right: 11rem;
+padding: 5px;
+}
+.home{
+top: 2rem;
+left: 5rem;
+padding: 5px;
+}
+.u-name{
+  background: linear-gradient(rgba(0, 132, 255, 0.918), rgba(0, 153, 255, 0.904));
+  padding: 2px;
+}
+footer { width:100%; background-color:#263238; min-height:250px; padding:10px 0px 25px 0px ;}
+.pt2 { padding-top:40px ; margin-bottom:20px ;}
+footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
+.footer_ul { margin:0px ; list-style-type:none ; font-size:14px; padding:0px 0px 10px 0px ; }
+.footer_ul li {padding:0px 0px 5px 0px;}
+.footer_ul li a{ color:#CCC;}
+.footer_ul li a:hover{ color:#fff; text-decoration:none;}
+.fleft { float:left;}
+.padding-right { padding-right:10px; }
+
+.footer_ul2 {margin:0px; list-style-type:none; padding:0px;}
+.footer_ul2 li p { display:table; }
+.footer_ul2 li a:hover { text-decoration:none;}
+.footer_ul2 li i { margin-top:5px;}
+
+.bottom_border { border-bottom:1px solid #323f45; padding-bottom:20px;}
+.foote_bottom_ul_amrc {
+	list-style-type:none;
+	padding:0px;
+	display:table;
+	margin-top: 10px;
+	margin-right: auto;
+	margin-bottom: 10px;
+	margin-left: auto;
+}
+.foote_bottom_ul li { display:inline;}
+.foote_bottom_ul li a { color:#999; margin:0 12px;}
+
+.social_footer_ul { display:table; margin:15px auto 0 auto; list-style-type:none;  }
+.social_footer_ul li { padding-left:20px; padding-top:10px; float:left; }
+.social_footer_ul li a { color:#CCC; border:1px solid #CCC; padding:8px;border-radius:50%;}
+.social_footer_ul li i {  width:20px; height:20px; text-align:center;}

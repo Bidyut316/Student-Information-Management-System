@@ -1,0 +1,29 @@
+{% url 'logout' as logout_url %}
+<div class="container-fluid">
+ <div class="row">
+
+  <div class="col d-flex justify-content-around ">
+
+   <h3 class="home"><a href="{% url 'accounts:home' %}" class="">Home</a></h3>
+   {% if request.user.is_authenticated %}
+   <h3 class="login"><a href="{{ logout_url }}" class="">Logout</a></h3>
+   {% else %}
+   <h3 class="login"><a href="{% url 'accounts:login' %}" class="">Login</a></h3>
+   <h3 class="signup"><a href="{% url 'accounts:SReg' %}" class="">Sign up</a></h3>
+   {% endif %}
+  </div>
+ </div>
+ {% if page == 'home' or page == 'student' %}
+ <div class="row home-header mt-2">
+  <div class="col d-flex align-items-center justify-content-center text-center">
+
+   <h1 class="text-uppercase text-white font-weight-bold u-name  display-4">
+    University Of North Bengal
+   </h1>
+
+  </div>
+ </div>
+ {% endif %}
+
+
+</div>

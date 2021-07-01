@@ -1,0 +1,39 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/stuReg.css' %}" />
+{% endblock %}
+
+{% block body %}
+<hr>
+<div class="container department ">
+  <div class="row m-5">
+    <div class="col-md-6 reginfo shadow mx-auto">
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{loginform.as_p}}
+        {% if messages %}
+
+        {% for message in messages %}
+        <p class="alert text-danger" style="background-color: rgba(253, 253, 60, 0.603)">
+
+          <a class="close" href="#" data-dismiss="alert">×</a>
+          {{ message }}
+        </p>
+        {% endfor %}
+
+        {% endif %}
+        <button class="btn btn-block btn-primary">Login</button>
+      </form>
+      <hr>
+      <div class="d-flex justify-content-center links">
+        <p> Don't have an account? <a href="{% url 'accounts:SReg' %}"> Sign Up</a></p>
+      </div>
+      <p class="text-center"><a href="#">Forgot Password</a></p>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}

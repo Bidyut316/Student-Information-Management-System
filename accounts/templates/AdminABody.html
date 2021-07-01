@@ -1,0 +1,94 @@
+{% extends 'AdminMain.html' %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/AdminABody.css' %}" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+{% endblock %}
+
+{% block body %}
+
+<section id="task">
+ <div class="container">
+  <div class="row inform-card">
+   <div class="col-lg-4 col-md-6 col-10 mx-auto mt-5">
+    <div class="card card-2 shadow">
+     <div class="card-body">
+      <div class="flex text-center justify-content-between">
+       <i class="fa fa-users body-icon"></i>
+       <div class="side-text align-self-center">
+        <a href="{% url 'accounts:DReg' %}">
+         <h4 class="mt-2 text-white">Add Department</h4>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="card-footer d-flex justify-content-between">
+      <a href="{% url 'accounts:DReg' %}" class="text-capitalize">click here </a>
+      <a href="{% url 'accounts:DReg' %}"><i class="fa fa-arrow-right raicon" style=" color: #f15025"></i> </a>
+
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-4 col-md-6 col-10 mx-auto mt-5">
+    <div class="card card-2 shadow">
+     <div class="card-body">
+      <div class="flex text-center justify-content-between">
+       <i class="fas fa-user-graduate fa-4x"></i>
+       <div class="side-text align-self-center">
+        <a href="{% url 'ATask:CAllStu' %}">
+         <h4 class="mt-2 text-white">Show Current Student</h4>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="card-footer d-flex justify-content-between">
+      <a href="{% url 'ATask:CAllStu' %}" class="text-capitalize">click here </a>
+      <a href="{% url 'ATask:CAllStu' %}"><i class="fa fa-arrow-right raicon" style=" color: #f15025"></i> </a>
+
+     </div>
+    </div>
+   </div>
+
+   <div class="col-lg-4 col-md-6 col-10 mx-auto mt-5">
+    <div class="card card-2 shadow">
+     <div class="card-body">
+      <div class="flex text-center justify-content-between">
+       <i class="fas fa-user-graduate fa-4x"></i>
+       <div class="side-text align-self-center">
+        <a href="{% url 'ATask:OAllStu' %}">
+         <h4 class="mt-2 text-white">Show Old Student</h4>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="card-footer d-flex justify-content-between">
+      <a href="{% url 'ATask:OAllStu' %}" class="text-capitalize">click here </a>
+      <a href="{% url 'ATask:OAllStu' %}"><i class="fa fa-arrow-right raicon" style=" color: #f15025"></i> </a>
+
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-4 col-md-6 col-10 mx-auto mt-5">
+    <div class="card card-2 shadow">
+     <div class="card-body">
+      <div class="flex text-center justify-content-between">
+       <i class="fas fa-trash fa-4x"></i>
+       <div class="side-text align-self-center">
+        <a href="{% url 'ATask:show_deleted' %}">
+         <h4 class="mt-2 text-white">Show Deleted Records</h4>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="card-footer d-flex justify-content-between">
+      <a href="{% url 'ATask:show_deleted' %}" class="text-capitalize">click here </a>
+      <a href="{% url 'ATask:show_deleted' %}"><i class="fa fa-arrow-right raicon" style=" color: #f15025"></i> </a>
+
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+{% endblock %}

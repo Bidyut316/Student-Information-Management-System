@@ -1,0 +1,9 @@
+{% if passout %}
+Pass out
+{% else %}
+{{object.semester}}
+{% if request.user.user_type.is_department %}
+<button sem="{{object.semester}}" class="btn btn-sm btn-success ml-4 py-0 pass-btn"
+ data-url="{% url 'department:change_sem' object.slug  %}" id="{{object.slug|add:'pass'}}">Pass</button>
+{% endif %}
+{% endif %}

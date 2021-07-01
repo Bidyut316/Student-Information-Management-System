@@ -1,0 +1,40 @@
+	.department{
+		padding: 4%;
+		height: 400px;
+	}
+	.reginfo{
+		background: #ECC8AF;
+		padding: 4%;
+		border-top-left-radius: 0.5rem;
+		border-bottom-left-radius: 0.5rem;
+	}
+	.department-info{
+		margin-top:10%;
+	}
+	.department-info img{
+		margin-bottom: 15%;
+	}
+	.department-info h2{
+		margin-bottom: 10%;
+	}
+	.col-md-9{
+		background: #fff;
+		padding: 3%;
+		border-top-right-radius: 0.5rem;
+		border-bottom-right-radius: 0.5rem;
+	}
+	.department-form label{
+		font-weight:600;
+	}
+	.department-form button{
+		 /* background: #25274d;
+		color: #fff;  */
+		font-weight: 600;
+		/* width: 25%; */
+	}
+	.department-form button:focus{
+		box-shadow:none;
+	}
+	.shadow {
+  box-shadow: 0 0.15rem 1.75rem 0 rgb(59, 59, 59) !important;
+}

@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/stuReg.css' %}" />
+
+{% endblock %}
+
+{% block body %}
+<section id="StudentTask">
+  <div class="container mt-4">
+    <h3 class="text-info text-capitalize text-center">Name: {{request.user.full_name}}</h3>
+    <div class="row my-5">
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 p-2">
+          <h3 class="text-center"><a href="{% url 'studentinfo2:studentinfo' %}">Fill Details</a></h3>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 p-2">
+          <h3 class="text-center"><a href="{% url 'studentinfo2:studentinfo' %}">Upload Documents</a></h3>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 p-2">
+          <h3 class="text-center"><a href="{% url 'studentinfo2:studentinfo' %}">Fill Details</a></h3>
+        </div>
+      </div>
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 p-2">
+          <h3 class="text-center"><a href="{% url 'studentinfo2:studentinfo' %}">Upload Documents</a></h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+<hr><br>
+
+{% endblock %}

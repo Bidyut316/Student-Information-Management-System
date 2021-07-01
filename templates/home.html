@@ -1,0 +1,129 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <!-- font awesome -->
+  <link rel="stylesheet" href="{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}" />
+  <!-- Custome Css -->
+  <link rel="stylesheet" href="{% static 'css/navheader_and_footer.css' %}" />
+  {% block css %}
+  {% endblock %}
+  <style>
+    .border-left-primary {
+      border-left: 0.25rem solid #4e73df !important;
+    }
+  </style>
+  <title>Hello, world!</title>
+</head>
+
+<body>
+  <header>
+    {% include 'NavAndHeader.html' %}
+  </header>
+
+  {% block body %}
+
+  {% endblock %}
+
+
+  {% if page == 'home' %}
+  <section id="info">
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
+            </div>
+            <div class="card-body">
+              <div class="text-center">
+                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                  src="{% static 'img/corona__1584434623.webp' %}" alt="">
+              </div>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore dolorem incidunt fuga! Quia totam
+                asperiores minus, consectetur vero velit commodi quibusdam ea dignissimos at aut unde ipsum eaque
+                repellat consequuntur?</p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, asperiores.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mx-auto">
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Information</h6>
+            </div>
+            <div class="card-body">
+              <div class="text-center">
+                <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                  src="{% static 'img/corona__1584434623.webp' %}" alt="">
+              </div>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatem ab architecto ea cupiditate
+                laudantium cum ex, aperiam animi inventore consequuntur officia eveniet omnis quasi obcaecati minus
+                adipisci deserunt minima a assumenda culpa doloribus?
+                deserunt.</p>
+              minima a assumenda culpa doloribus? Unde quas iste, perspiciatis pariatur autem
+              deserunt.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <section>
+    <div class="container-fluid">
+      <div class="row footer-header text-warning font-weight-bold">
+        <div class="col-md-4 text-center my-3">
+
+          <p><i class="fa fa-book fa-3x text-white" aria-hidden="true"></i></p>
+          <h6 class="text-uppercase text-white my-3 service-title">Book</h6>
+          <p class="w-75 mx-auto text-left service-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla rem quia expedita necessitatibus, tempore
+            veritatis quod praesentium laboriosam nesciunt placeat.
+          </p>
+        </div>
+        <div class="col-md-4 text-center my-3">
+          <i class="fa fa-users fa-3x text-white" aria-hidden="true"></i>
+          <h6 class="text-uppercase text-white my-3 service-title">User Group</h6>
+          <p class="w-75 mx-auto text-left service-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla rem quia expedita necessitatibus, tempore
+            veritatis quod praesentium laboriosam nesciunt placeat.
+          </p>
+        </div>
+        <div class="col-md-4 text-center my-3">
+          <i class="fa fa-desktop fa-3x text-white" aria-hidden="true"></i>
+          <h6 class="text-uppercase text-white my-3 service-title">Desktop</h6>
+          <p class="w-75 mx-auto text-left service-text">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla rem quia expedita necessitatibus, tempore
+            veritatis quod praesentium laboriosam nesciunt placeat.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endif %}
+  <!-- footer -->
+
+  {% include 'footer.html' %}
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

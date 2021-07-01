@@ -1,0 +1,603 @@
+{% extends 'AdminMain.html' %}
+{% load static %}
+{% load subtract %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/' %}" />
+{% endblock %}
+
+{% block css %}
+<style>
+  .table-hover tbody tr:hover td,
+  .table-hover tbody tr:hover th {
+    background-color: rgba(255, 255, 4, 0.719);
+  }
+</style>
+
+{% endblock %}
+
+
+{% block body %}
+{% csrf_token %}
+<section id="table">
+  <div class="container-fluid">
+
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800 mt-3 ml-4">Tables</h1>
+    <p class="mx-4">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus modi quibusdam nesciunt atque?
+      Libero id iste soluta illo ad maxime autem a nostrum qui nisi, aliquid nobis asperiores blanditiis dolore. Lorem
+      ipsum dolor, sit amet consectetur adipisicing elit.
+      Adipisci odio ipsum perferendis voluptatum. Quaerat repellat cum nesciunt veniam, architecto veritatis!
+      documentation</a>.</p>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive table-bordered table-hover">
+
+          <div class="row m-3">
+            <div class="col-sm-8 col-md-3  py-2">
+              <div class="form-group row">
+                <label for="recorde-show" class=" col-form-label py-0">Records Show:</label>
+                <div class="dataTables_length" id="dataTable_length"><select name="dataTable_length"
+                    aria-controls="dataTable" class="custom-select custom-select-sm form-control form-control-sm">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="col-sm-12 col-md-9 mx-auto ">
+              <form method="GET">
+
+                <div class="d-flex justify-content-end">
+                  {% if old %}
+                  <div class="form-group row mx-2 d-flex justify-content-around">
+                    <label for="staticEmail" class="col-form-label">Session:</label>
+                    <div class="">
+                      {{myFilter.form.session}}
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% if request.user.user_type.is_admin == True %}
+                  <div class="form-group row mx-2 d-flex justify-content-around">
+                    <label for="staticEmail" class="col-form-label">Department:</label>
+                    <div class="">
+                      {{myFilter.form.department_name}}
+                    </div>
+                  </div>
+
+                  {% endif %}
+                  {% if old == False %}
+                  <div class="form-group mx-2 row">
+                    <label for="staticEmail" class=" col-form-label">Semester:</label>
+                    <div class="">
+                      {{myFilter.form.semester}}
+                    </div>
+                  </div>
+                  {% endif %}
+                  {% if request.user.user_type.is_admin == False and old == False %}
+
+                  <div class="form-group row mx-2 d-flex justify-content-around">
+                    <label for="staticEmail" class=" col-form-label">Class Roll:</label>
+                    <div class="">
+                      {{myFilter.form.class_roll}}
+                    </div>
+                  </div>
+                  {% endif %}
+                  <button class="btn btn-primary" id="search-btn" type="submit" style="display: none;">Search</button>
+
+                </div>
+
+
+
+
+
+              </form>
+
+            </div>
+
+          </div>
+
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Si No.</th>
+                <th scope="col">Photo</th>
+                <th scope="col">Name</th>
+
+                {% if request.user.user_type.is_admin == True %}
+                <th scope="col">Department</th>
+                {% if old %}
+                <th scope="col">Session</th>
+                {% else %}
+                <th scope="col">Semester</th>
+                {% endif %}
+                {% else %}
+                {% if old %}
+                <th scope="col">Session</th>
+                {% else %}
+                <th scope="col">Semester</th>
+                <th scope="col">Class Roll</th>
+                {% endif %}
+                {% endif %}
+                {% if dataverify %}
+                <th scope="col">View</th>
+                {% else %}
+                <th scope="col">Verify</th>
+                {% endif %}
+                <th scope="col">Remove</th>
+                <th scope="col">Mail</th>
+                {% if old == False %}
+                <th scope="col">Lock</th>
+                {% endif %}
+              </tr>
+            </thead>
+            <tbody>
+
+              {% for record in records %}
+              <tr>
+                <th scope="row">{{ records.start_index|add:forloop.counter0 }}
+                  <input class="messageCheckbox" type="checkbox" value="21" name="{{record.student.email}}"
+                    style="width:18px; height:15px;">
+                </th>
+                <td><img src="{{ record.photo.url }}" alt="Profile Pic" height="40px" width="40px" /></td>
+                <td>{{record.student.full_name}}</td>
+
+
+                {% if request.user.user_type.is_admin == True %}
+                <td>{{record.department_name}}</td>
+                {% if old %}
+                <td>{{record.session}}</td>
+                {% else %}
+                <td>{{record.semester}}</td>
+                {% endif %}
+                {% else %}
+                {% if request.user.user_type.is_department and old == False %}
+                <td id="{{record.slug|add:'td'}}">{{record.semester}}
+                  {% if dataverify %}
+                  <button sem="{{record.semester}}" class="btn btn-sm btn-success ml-4 py-0 pass-btn"
+                    data-url="{% url 'department:change_sem' record.slug  %}"
+                    id="{{record.slug|add:'pass'}}">Pass</button>
+                  {% endif %}
+                  {% else %}
+                <td>{{record.session}}</td>
+                {% endif %}
+                </td>
+                {% if old == False %}
+                <td>{{record.class_roll}} </td>
+                {% endif %}
+                {% endif %}
+
+
+
+                <td>
+                  {% if record.data_status == 'verify' %}
+
+
+                  <a class="btn btn-sm btn-info " href="{% url 'department:verifi' record.slug %}">
+                    View & Update
+                  </a>
+                  {% else %}
+                  <a class="btn btn-sm btn-info " href="{% url 'department:verifi' record.slug %}">
+                    Update & Verify
+                  </a>
+                  {% endif %}
+                </td>
+                <td>
+                  <a class="btn btn-sm delete-btn btn-danger text-white" slug="{{record.slug}}"><i class="fa fa-trash"
+                      aria-hidden="true"></i>
+                    Delete</a>
+                </td>
+                <td>
+                  <a class="btn btn-sm btn-info mail-btn" mail="{{record.student.email}}">Send
+                    Mail</a>
+
+                </td>
+                {% if old == False %}
+                <td>
+                  {% if record.view_lock %}
+                  <button for="lock" class="lock-btn btn btn-sm py-0" id="{{ record.slug|add:'loc' }}"
+                    data-url="{% url 'department:lock_unlock' record.slug  %}"><i class=" fa fa-lock
+                    fa-2x" style="color:  #0099CC;"></i></button>
+                  {% else %}
+                  <button for="unlock" class="lock-btn btn btn-sm py-0" id="{{ record.slug|add:'loc' }}"
+                    data-url="{% url 'department:lock_unlock' record.slug  %}"><i class="fa fa-unlock fa-2x"
+                      aria-hidden="true" style="color:  #0099CC;"></i></button>
+                  {% endif %}
+                </td>
+                {% endif %}
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+
+
+
+          <div class="row mx-0">
+            <div class=" col-md-5 mx-auto  ">
+              <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing
+                {{records.start_index}}
+                to {{records.end_index}}
+                of
+                {{paginator.count}} entries
+              </div>
+            </div>
+            <div class=" col-md-7 mx-auto ">
+
+              {% if records.has_other_pages %}
+              {% load proper_paginate %}
+              {% load url_replace %}
+
+              <ul class="pagination float-lg-right">
+                {% if records.number == 1 %}
+                <li class="page-item">
+                  <a class="disable page-link">⇤</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                  <a href="?{% url_replace request 'page' 1 %}" class="page-link">⇤</a>
+                </li>
+                {% endif %}
+
+                {% if records.has_previous %}
+                <li class="page-item">
+                  <a href="?{% url_replace request 'page' records.number|subtract:'1' %}"
+                    class=" page-link">Previous</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                  <a class="disable page-link">Previous</a>
+                </li>
+                {% endif %}
+                {% for i in paginator|proper_paginate:records.number %}
+                {% if records.number == i %}
+                <li class="page-item active"><a href="#" class="page-link">{{i}}</a></li>
+                {% else %}
+                <li class="page-item"><a href="?{% url_replace request 'page' i %}" class="page-link">{{i}}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if records.has_next %}
+                <li class="page-item">
+                  <a href="?{% url_replace request 'page' records.number|add:'1' %}" class="page-link">Next</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                  <a class="disable page-link">Next</a>
+                </li>
+                {% endif %}
+
+
+
+
+                {% if records.number == paginator.num_pages %}
+
+                <li class="page-item">
+                  <a class="disable page-link">⇥</a>
+                </li>
+                {% else %}
+
+                <li class="page-item">
+                  <a href="?{% url_replace request 'page' paginator.num_pages %}" class="page-link">⇥</a>
+                </li>
+                {% endif %}
+
+
+
+
+
+              </ul>
+              {% endif %}
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<section id="task">
+  <div class="container my-5">
+    <div class="row">
+      <div class="col">
+        {% if request.user.user_type.is_admin  %}
+        <!-- add session & department -->
+        <a id="download-btn"
+          href="{% url 'department:DownloadRecords' verify=dataverify  dep=myFilter.form.department_name.value roll=None sem=myFilter.form.semester.value old_2=old  %}"
+          class="
+          btn bg-primary text-white ">Download &
+          Print</a>
+        {% else %}
+        <a id="download-btn"
+          href="{% url 'department:DownloadRecords' verify=dataverify dep=department_id roll=myFilter.form.class_roll.value sem=myFilter.form.semester.value old_2=old  %}"
+          class="
+          btn bg-primary text-white">Download &
+          Print</a>
+        {% endif %}
+        <a id="slect-mail" class="btn bg-primary text-white ml-2">Send Mail Slected Student</a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MODAL WE WILL BE USING -->
+<div class=" modal fade" id="modal-book" role="dialog">
+  <div class="modal-dialog ">
+    <div class="modal-content">
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+  function myFunction() {
+    {% if old == False %}
+    var ele = document.getElementById("id_semester");
+    ele.classList.add("form-control");
+    {% endif %}
+    //var selected_option = document.getElementById("id_semester");
+    //selected_option.addEventListener.add("onchange");
+    {% if request.user.user_type.is_admin == False %}
+    {% if old == False %}
+    var element = document.getElementById("id_class_roll");
+    element.classList.add("form-control");
+
+    var xx = document.getElementById("id_class_roll").value;
+    document.getElementById("id_class_roll").value = "";
+    document.getElementById("id_class_roll").value = xx;
+    $("#id_class_roll").focus();
+    {% endif %}
+    {% else %}
+    var dep = document.getElementById("id_department_name");
+    dep.classList.add("form-control");
+    {% endif %}
+  }
+  myFunction();
+  $("#id_semester").change(function () {
+    //alert($("#YourDropDownId").val());
+    document.getElementById("search-btn").click();
+  });
+  $("#id_department_name").change(function () {
+    //alert($("#YourDropDownId").val());
+    document.getElementById("search-btn").click();
+  });
+  $("#id_class_roll").on('input', function () {
+    //alert($("#YourDropDownId").val());
+    document.getElementById("search-btn").click();
+  });
+  {% if old %}
+  $("#id_session").change(function () {
+    //alert($("#YourDropDownId").val());
+    document.getElementById("search-btn").click();
+  });
+  {% endif %}
+  //For pass Button Ajax call
+  {% if request.user.user_type.is_admin == False and old == False and dataverify %}
+  var passfun = function () {
+    var self = $(this);
+    //alert("click");
+    var vb = self.attr('id')
+    var cc = document.getElementById(vb).parentElement.id;
+    //alert(cc);
+    sem = self.attr('sem');
+    $.ajax({
+      url: self.attr("data-url"),
+      data: { "sem": sem },
+      type: 'get',
+      dataType: 'json',
+      success: function (data) {
+        //alert(data.html_td);
+        $("#" + cc).html(data.html_td);
+        $(".pass-btn").click(passfun);
+      }
+    });
+  }
+  $(".pass-btn").click(passfun);
+  {% endif %}
+
+  //Ajax for Lock Unlock 
+  {% if old == False %}
+  var lockfun = function () {
+    var self = $(this);
+    var btn_id = self.attr('id');
+    // alert(btn_id);
+    var val = self.attr('for');
+    $.ajax({
+      url: self.attr("data-url"),
+      data: { "val": val },
+      type: 'get',
+      dataType: 'json',
+      success: function (lockdata) {
+        $("#" + btn_id).html(lockdata.icon);
+        //alert(lockdata.icon);
+      }
+    });
+  }
+  $(".lock-btn").click(lockfun);
+  {% endif %}
+
+  //Ajax for delete records
+  $(function () {
+    $(".delete-btn").click(function () {
+      var sl = $(this).attr('slug');
+      //alert(sl);
+      $.ajax({
+        url: "{% url 'ATask:delete_form_ajax' %}",
+        data: { "sl": sl, 'pt': '{{request.get_full_path}}' },
+        type: 'get',
+        dataType: 'json',
+        beforeSend: function () {
+          $("#modal-book").modal("show");
+        },
+        success: function (data) {
+          $("#modal-book .modal-content").html(data.html_form);
+        }
+      });
+    });
+
+  });
+  //Ajax for load Mail form
+  $(function () {
+    $(".mail-btn").click(function () {
+      var email = $(this).attr('mail');
+      //alert(sl);
+      $.ajax({
+        url: "{% url 'ATask:load_mail_form' %}",
+        data: { 'mail': email },
+        type: 'get',
+        dataType: 'json',
+        beforeSend: function () {
+          $("#modal-book").modal("show");
+        },
+        success: function (data) {
+          $("#modal-book .modal-content").html(data.html_form);
+        }
+      });
+    });
+
+  });
+  //Ajax for Send mail
+  /*$("#modal-book").on("submit", ".js-email-send-form", function () {
+    var form = $(this);
+    formdata = new FormData(this)
+    //alert('Mail Form');
+    $.ajax({
+      url: form.attr("action"),
+      data: formdata,
+      type: form.attr("method"),
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      success: function (data) {
+        if (data.mail_is_send) {
+          alert("Book created!");  // <-- This is just a placeholder for now for testing
+          $("#modal-book").modal("hide");
+        }
+        else {
+          // $("#modal-book .modal-content").html(data.html_form);
+          alert('else');
+        }
+      }
+    });
+    return false;
+  });
+  // csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()*/
+
+
+  //Ajax for load Mail form for slected student
+  $(function () {
+    $("#slect-mail").click(function () {
+      // var email = $(this).attr('mail');
+      //alert(sl);
+      //email list
+      var objects = {};
+      function abc() {
+        var checkedValue = null;
+        var inputElements = document.getElementsByClassName('messageCheckbox');
+        for (var i = 0; inputElements[i]; ++i) {
+          if (inputElements[i].checked) {
+            checkedValue = inputElements[i].name;
+            console.log(checkedValue);
+            objects[i] = { name: checkedValue };
+            //break;
+          }
+        }
+        console.log(objects)
+      }
+      abc()
+
+      //objects['mail'] = email;
+      //objects['csrfmiddlewaretoken'] = $('input[name = csrfmiddlewaretoken]').val();
+      var size = Object.keys(objects).length;
+      if (size >= 1) {
+        $.ajax({
+          url: "{% url 'ATask:load_mail_form' %}",
+          headers: { 'X-CSRFToken': $('input[name = csrfmiddlewaretoken]').val() },
+          dataType: 'json',
+          data: JSON.stringify(objects),
+          /* data: {
+             'mail': 'email', 'objects': objects,
+             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+           },*/
+          type: 'post',
+
+          beforeSend: function () {
+            $("#modal-book").modal("show");
+          },
+          success: function (data) {
+            $("#modal-book .modal-content").html(data.html_form);
+          }
+        });
+      }
+      else {
+        console.log("Please Slect student");
+      }
+
+    });
+
+  });
+
+
+
+  $("#modal-book").on("submit", ".js-email-send-form", function () {
+    var form = $(this);
+    formdata = new FormData(this)
+    console.log(formdata)
+    var objects = {};
+    function abc() {
+      var checkedValue = null;
+      var inputElements = document.getElementsByClassName('messageCheckbox');
+      for (var i = 0; inputElements[i]; ++i) {
+        if (inputElements[i].checked) {
+          checkedValue = inputElements[i].name;
+          console.log(checkedValue);
+          objects[i] = { name: checkedValue };
+          //break;
+        }
+      }
+      console.log(objects)
+    }
+    abc()
+    formdata.append('myData', JSON.stringify(objects));
+    console.log(formdata)
+    //alert('Mail Form');
+    $.ajax({
+      url: form.attr("action"),
+      data: formdata,
+      type: form.attr("method"),
+      processData: false,
+      contentType: false,
+      dataType: 'json',
+      success: function (data) {
+        if (data.mail_is_send) {
+          alert("Book created!");  // <-- This is just a placeholder for now for testing
+          $("#modal-book").modal("hide");
+        }
+        else {
+          // $("#modal-book .modal-content").html(data.html_form);
+          alert('else');
+        }
+      }
+    });
+    return false;
+  });
+
+</script>
+{% endblock %}

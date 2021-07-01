@@ -1,0 +1,89 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/stuReg.css' %}" />
+{% endblock %}
+
+{% block body %}
+<hr>
+<!-- <body> -->
+<!-- <h2>Student Registration form</h2>
+  <form method='POST'>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-block btn-primary">Submit</button>
+  </form> -->
+
+
+<div class="container department ">
+  <div class="row shadow mt-2 m-5">
+    <div class="col-md-3 reginfo">
+      <div class="department-info">
+        <img src="https://img.icons8.com/bubbles/100/000000/user-male.png" />
+        <h3 class="capitalize">Lorem, ipsum.</h3>
+        <p>Lorem ipsum dolor sit amet. ! Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum,
+          repellendus?
+        </p>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="department-form">
+        <form method="POST">{% csrf_token %}
+          <div class="form-group">
+            <label class="control-label col-sm-6 " for="fname">Name:</label>
+            <div class="col-sm-10">
+              {{form.full_name}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-6" for="email">Email:</label>
+            <div class="col-sm-10">
+              {{form.email}}
+            </div>
+          </div>
+          {% if form.email.errors %}
+          <div class="errorlist text-danger">
+
+            {{ form.email.errors|escape }}
+
+          </div>
+          {% endif %}
+          <div class="form-group">
+            <label class="control-label col-sm-6" for="pwd">Password:</label>
+            <div class="col-sm-10">
+              {{form.password1}}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="control-label col-sm-6" for="pwd">Repeat Password:</label>
+            <div class="col-sm-10">
+              <!-- <input type="email" class="form-control" id="email" placeholder="Enter email" name="email"> -->
+              {{form.password2}}
+            </div>
+          </div>
+          {% if form.password2.errors %}
+
+          <div class="errorlist text-danger">
+
+            <p class="text-danger">{{ form.password2.errors|escape }}</p>
+
+          </div>
+          {% endif %}
+          <div>
+            {% for m in error %}
+            <h3>m</h3>
+            {% endfor %}
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-block bg-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,170 @@
+{% if user.user_type.is_student == True %}
+<hr>
+{% endif %}
+{% if obj.view_lock and request.user.user_type.is_student %}
+
+<fieldset disabled>
+  {% endif %}
+  {% if request.user.user_type.is_student == True %}
+  <h3 class="text-info text-capitalize text-center mt-4 mb-0">Name: {{request.user.full_name}}</h3>
+  {% else %}
+  <h3 class="text-info text-capitalize text-center mt-4 mb-0">Name: {{obj.student.full_name}}</h3>
+  {% endif %}
+
+  <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+    <section id="basicinfo">
+      <div class="container">
+        <div class="row mt-4">
+          <div class="col">
+            <h3 class="text-center text-capitalize">basic information </h3>
+          </div>
+        </div>
+        <div class="row shadow mb-5 flex-lg-row-reverse">
+          <div class="col-sm-6 col-lg-4 my-2 mx-auto text-center">
+            <div class="stu-img mx-auto my-2" style="height:195px; width:170px ">
+              <img src="{{obj.photo.url}}" id="target" alt="student-img" class=" img-thumbnail"
+                style="height:190px; width:170px ">
+            </div>
+            <div class="file btn">
+              <label class="btn-upload">
+
+                {{ SBasicInfo.photo }}
+                <button class="btn abc ">Upload Photo</button>
+              </label>
+            </div>
+          </div>
+          <div class="col-sm-10 col-lg-8 mx-auto my-2">
+            <div class="row">
+              <div class="col-sm-6">
+                <h4 class="text-capitalize">Session:</h4>
+                {{ SBasicInfo.session }}
+
+
+                <h4 class="text-capitalize">department name:</h4>
+                {{ SBasicInfo.department_name }}
+                <h4 class="text-capitalize">semester:</h4>
+                {{ SBasicInfo.semester }}
+              </div>
+              <div class="col-sm-6">
+                <h4 class="text-capitalize">class roll:</h4>
+                {{ SBasicInfo.class_roll }}
+                <h4 class="text-capitalize">blod group:</h4>
+                {{ SBasicInfo.blod_group }}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <hr>
+    <section id="address">
+      <div class="container">
+        <div class="row mt-5">
+          <div class="col">
+            <h3 class="text-center text-capitalize">address</h3>
+          </div>
+        </div>
+        <div class="row shadow mb-5">
+          <div class="col-md-6 my-2">
+            <h4 class="text-center">Current Address</h4>
+            <h4 class="text-capitalize mt-5">Village:</h4>
+            {{ Caddress.vill }}
+            <h4 class="text-capitalize">city:</h4>
+            {{ Caddress.city }}
+            <h4 class="text-capitalize">district:</h4>
+            {{ Caddress.dist }}
+            <h4 class="text-capitalize">state:</h4>
+            {{ Caddress.state }}
+            <h4 class="text-capitalize">Pin no:</h4>
+            {{ Caddress.pin }}
+          </div>
+          <div class="col-md-6 my-2">
+            <h4 class="text-center">Permanent Address</h4>
+            <p class="text-center mb-1"><input type="checkbox" id="addresscheck" onclick="AutofillAddress()"><label
+                class="ml-2" for="check">Same as
+                Current
+                Address</label> </p>
+            <h4 class="text-capitalize">Village:</h4>
+            {{ Paddress.vill }}
+            <h4 class="text-capitalize">city:</h4>
+            {{ Paddress.city }}
+            <h4 class="text-capitalize">district:</h4>
+            {{ Paddress.dist }}
+            <h4 class="text-capitalize">state:</h4>
+            {{ Paddress.state }}
+            <h4 class="text-capitalize">Pin no:</h4>
+            {{ Paddress.pin }}
+          </div>
+        </div>
+      </div>
+      </div>
+    </section>
+    <hr>
+    <section id="academic">
+      <div class="container-fluid">
+        <div class="row mt-5">
+          <div class="col">
+            <h3 class="text-center text-capitalize">academic information</h3>
+          </div>
+        </div>
+        <div class="row mx-3 mb-5 shadow">
+
+          <div class="col-sm-8 col-md-6 col-lg-2 mx-auto">
+            <p class="text-capitalize">degree</p>
+            {{ AInfo.degree }}
+          </div>
+          <div class="col-sm-8 col-md-6 col-lg-3 mx-auto">
+            <p class="text-capitalize">University name:</p>
+            {{ AInfo.university_name }}
+          </div>
+          <div class="col-sm-8 col-md-6 col-lg-3 mx-auto">
+            <p class="text-capitalize">Collage name:</p>
+            {{ AInfo.collage_name }}
+          </div>
+          <div class="col-sm-8 col-md-6 col-lg-2 mx-auto">
+            <p class="text-capitalize">Passing year:</p>
+            {{ AInfo.passing_year }}
+          </div>
+          <div class="col-sm-8 col-md-6 col-lg-2 my-2 mx-auto">
+            <p class="text-capitalize">Percentage:</p>
+            {{ AInfo.Percentage }}
+          </div>
+        </div>
+      </div>
+    </section>
+    <hr>
+    <div class="container">
+      {% if user.user_type.is_student and obj.view_lock == False or exist == False %}
+      <div class="row">
+        <div class="col-sm-10 mx-auto my-5">
+          <button class="btn btn-block bg-primary text-capitalize ">Submit details</button>
+
+        </div>
+      </div>
+      {% endif %}
+      {% if user.user_type.is_department or user.user_type.is_admin  %}
+      <div class="row">
+        <div class="col-sm-10 mx-auto my-5">
+          <div class="row">
+            <div class="col-sm-6 mx-auto">
+              <button class="btn btn-block bg-primary text-capitalize ">Update details</button>
+
+            </div>
+            {% if obj.data_status == 'not verify' %}
+            <div class="col-sm-6 mx-auto">
+              <a href="{% url 'department:cnfverify' obj.slug %}"
+                class="btn btn-block bg-primary text-capitalize ">Verify
+                details</a>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+  </form>
+  {% if obj.view_lock %}
+</fieldset>
+{% endif %}

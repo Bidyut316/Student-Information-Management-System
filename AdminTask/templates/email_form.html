@@ -1,0 +1,27 @@
+{% load widget_tweaks %}
+<form method="post" action="{% url 'ATask:sendmail' %}" id="myform" class="js-email-send-form"
+  enctype="multipart/form-data">
+  {% csrf_token %}
+
+  <div class="modal-header">
+
+    <h4 class="modal-title">Send Mail</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" name="path" value={{path}}>
+    {% render_field mail_form.email value=email  %}
+    <h5>Subject</h5>
+    {{mail_form.subject}}
+    <h5>Message</h5>
+    {{mail_form.message}}
+    <h5 class="mt-1">Attach</h5>
+    {{mail_form.attach}}
+  </div>
+  <div class="modal-footer d-flex justify-content-around">
+    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-mail" aria-hidden="true"></i>
+      Send Mail</button>
+  </div>
+
+</form>

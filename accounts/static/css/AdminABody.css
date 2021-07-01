@@ -1,0 +1,33 @@
+.inform-card .card-2 {
+  background-color:  #ACBED8;
+}
+.inform-card .card .body-icon {
+  font-size: 60px;
+  
+  color: #f15025;
+}
+
+
+.inform-card .card a {
+  color: #f15025;
+}
+.inform-card .card .fa{
+  color: white;
+}
+
+.inform-card .card a:hover {
+  text-decoration: none;
+  color: blue;
+}
+
+.inform-card .card {
+  color: #fff;
+}
+.inform-card .card-footer {
+  /* background: #dce3ff; */
+  background:#E8EBF7;
+}
+.raicon:hover {
+  /* background: #dce3ff; */
+   color: blue;
+}

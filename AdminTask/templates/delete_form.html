@@ -1,0 +1,21 @@
+<form method="post" action="{% url 'ATask:delete_record' slug=slug %}" class="js-book-create-form">
+  {% csrf_token %}
+
+  <div class="modal-header">
+
+    <h4 class="modal-title">Delete</h4>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+  </div>
+  <div class="modal-body">
+    <input type="hidden" name="path" value={{path}}>
+    <h5>Reson For Delete Record</h5>
+
+    {{delete_form.reson}}
+  </div>
+  <div class="modal-footer d-flex justify-content-around">
+    <button type="button" class="btn btn-sm btn-info" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash" aria-hidden="true"></i>
+      Delete</button>
+  </div>
+
+</form>

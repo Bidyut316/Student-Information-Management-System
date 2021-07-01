@@ -1,0 +1,78 @@
+{% extends 'AdminMain.html' %}
+{% load static %}
+{% block csslink %}
+<link rel="stylesheet" href="{% static 'css/AdminDBody.css' %}" />
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+ integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+{% endblock %}
+
+
+{% block body %}
+<section id="task">
+ <div class="container">
+  <div class="row inform-card">
+
+   <div class="col-lg-4 col-md-6 col-10 mx-auto mt-5">
+    <div class="card card-2 shadow">
+     <div class="card-body">
+      <div class="flex text-center justify-content-between">
+       <i class="fas fa-user-check fa-4x"></i>
+       <div class="side-text align-self-center">
+        <a href="{% url 'department:VRecord' %}">
+         <h4 class="" style="color:yellow">{{verifi}} Verified Data</h4>
+         <h4 class="mt-2 text-white">Show / Modify Records</h4>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="card-footer d-flex justify-content-between">
+      <a href="{% url 'department:VRecord' %}" class="text-capitalize">click here </a>
+      <a href="{% url 'department:VRecord' %}"><i class="fa fa-arrow-right raicon" style=" color: #f15025"></i> </a>
+
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-4 col-md-6 col-10 mx-auto mt-5">
+    <div class="card card-2 shadow">
+     <div class="card-body">
+      <div class="flex text-center justify-content-between">
+       <i class="fa fa-exclamation-circle fa-4x"></i>
+       <div class="side-text align-self-center">
+        <a href="{% url 'department:PRecord' %}">
+         <h4 style="color:yellow">{{pending}} Records</h4>
+         <h4 class="mt-2 text-white">Pending for Verify</h4>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="card-footer d-flex justify-content-between">
+      <a href="{% url 'department:PRecord' %}" class="text-capitalize">click here </a>
+      <a href="{% url 'department:PRecord' %}"><i class="fa fa-arrow-right raicon" style=" color: #f15025"></i> </a>
+
+     </div>
+    </div>
+   </div>
+   <div class="col-lg-4 col-md-6 col-10 mx-auto mt-5">
+    <div class="card card-2 shadow">
+     <div class="card-body">
+      <div class="flex text-center justify-content-between">
+       <i class="fas fa-user-graduate fa-4x"></i>
+       <div class="side-text align-self-center">
+        <a href="{% url 'department:ORecord' %}">
+         <h4 style="color:yellow">{{old}} Old Students</h4>
+         <h4 class="mt-2 text-white">Old Records</h4>
+        </a>
+       </div>
+      </div>
+     </div>
+     <div class="card-footer d-flex justify-content-between">
+      <a href="{% url 'department:ORecord' %}" class="text-capitalize">click here </a>
+      <a href="{% url 'department:ORecord' %}"><i class="fa fa-arrow-right raicon" style=" color: #f15025"></i> </a>
+
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+{% endblock %}
