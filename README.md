@@ -51,7 +51,7 @@
         module will help the administrator in searching the student with various
         criteria easily.</li>
     </ul>
-<li>Search module:</li>
+<li>User Management:</li>
     <ul>
       <li>This module will help the administrator in enabling/disabling a user
         account and updating user information as required. Purpose of project
