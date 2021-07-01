@@ -51,9 +51,17 @@
         module will help the administrator in searching the student with various
         criteria easily.</li>
     </ul>
-
-    <li>User Management:</li>
-  
+<li>Search module:</li>
+    <ul>
+      <li>Suppose there are hundreds of students and from this we have to
+        search a particular student and we know the name of the student .In
+        manual system it is a tedious task though we know the name of the
+        student, but using this module we can easily search the student by
+        specifying the name of the student in the search criteria. Thus this
+        module will help the administrator in searching the student with various
+        criteria easily.</li>
+    </ul>
+   
   </ul>
   <h3>User Role:</h3>
   <li><b>Student:</b></li>
