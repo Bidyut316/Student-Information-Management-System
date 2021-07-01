@@ -11,10 +11,6 @@
       <p><b>Database:</b> PostgreSQL</p>
     </li>
   </ul>
-  <h3 align="center">ER-DIAGRAM</h3>
-  <p style="text-align:center;">
-    <img src="./img/Erd.jpg" width="700" alt="erd">
-  </p>
   <h3>Scope: </h3>
   <p>
     Student Information system will store all the details of the students
@@ -100,6 +96,10 @@
         by semester or/and class roll number.</p>
     </li>
   </ul>
+  <h3 align="center">ER-DIAGRAM</h3>
+  <p style="text-align:center;">
+    <img src="./img/Erd.jpg" width="700" alt="erd">
+  </p>
   <h3>Registration Page</h3>
   <img src="./img/Student signup.png" width="700" alt="signup">
   <h3>Login Page</h3>
