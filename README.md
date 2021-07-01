@@ -22,6 +22,7 @@
     personal details and all the information related to their resume
   </p>
 
+<ul>
     <li>Registration Module and Account Management:</li>
     <ul>
       <li>This module will help the student get registered from anywhere if
@@ -59,6 +60,8 @@
         Student Name, Student Id, Student Password, Student DOB, Student
         Image, Gender, City, Contact No, Email , Postal Address, etc.</li>
     </ul>
+  
+  </ul>
   <h3>User Role:</h3>
   <li><b>Student:</b></li>
   <ul>
