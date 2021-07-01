@@ -54,7 +54,7 @@
 
     <li>User Management:</li>
     <ul>
-      <li>This module will help the administrator in enabling/disabling a user
+      <li>This module will help the administrator in enabling or disabling a user
         account and updating user information as required. Purpose of project
         is to maintain details of the students such as storing information about:
         Student Name, Student Id, Student Password, Student DOB, Student
