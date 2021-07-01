@@ -53,13 +53,11 @@
     </ul>
 <li>Search module:</li>
     <ul>
-      <li>Suppose there are hundreds of students and from this we have to
-        search a particular student and we know the name of the student .In
-        manual system it is a tedious task though we know the name of the
-        student, but using this module we can easily search the student by
-        specifying the name of the student in the search criteria. Thus this
-        module will help the administrator in searching the student with various
-        criteria easily.</li>
+      <li>This module will help the administrator in enabling/disabling a user
+        account and updating user information as required. Purpose of project
+        is to maintain details of the students such as storing information about:
+        Student Name, Student Id, Student Password, Student DOB, Student
+        Image, Gender, City, Contact No, Email , Postal Address, etc.</li>
     </ul>
    
   </ul>
